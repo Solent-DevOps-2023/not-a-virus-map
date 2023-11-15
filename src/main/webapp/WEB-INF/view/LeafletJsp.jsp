@@ -53,6 +53,42 @@
             <h1>Hello world</h1>
             <p></p>
         </header>
+        
+        <%-- Check if the "message" attribute is present (set after creating a user) --%>
+<% if (request.getAttribute("message") != null) { %>
+    <h3>User Created Successfully!</h3>
+    <p>Username: <%= request.getAttribute("message") %></p>
+    <hr>
+<% } %>
+
+<h2>Create New User</h2>
+
+<form action="/user/create" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    
+    <label for="role">Role:</label>
+    <input type="text" id="role" name="role" required>
+    <br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    
+    <button type="submit">Create User</button>
+</form>
+
+<h2>Delete User</h2>
+
+<form action="/user/delete" method="post">
+    <label for="id">User ID:</label>
+    <input type="text" id="id" name="id" required>
+    <br>
+    
+    <button type="submit">Delete User</button>
+</form>
+
         <section>
             <div id="map" style="height: 440px; border: 1px solid #AAA;"></div>
             <div id="loader"></div>
