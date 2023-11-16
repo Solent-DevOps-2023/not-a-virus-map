@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: pasword # Set a password for the root user
+      MYSQL_DATABASE: db# Specify the name of the database
+      MYSQL_USER: user                # Specify the username
+      MYSQL_PASSWORD: password        # Set a password for the specified user
+    ports:
+      - "3306:3306"                        # Map container's 3306 port to host's 3306 port
