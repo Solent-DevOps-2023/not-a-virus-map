@@ -113,11 +113,12 @@
          <scope>provided</scope>
       </dependency>
 
-      <!-- <dependency> -->
-      <!-- <groupId>mysql</groupId> -->
-      <!-- <artifactId>mysql-connector-java</artifactId> -->
-      <!-- <scope>runtime</scope> -->
-      <!-- </dependency> -->
+      <dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>8.0.33</version>
+	<scope>runtime</scope>
+      </dependency>
 
       <dependency>
          <groupId>org.springframework.boot</groupId>
@@ -136,8 +137,8 @@
          <groupId>org.hsqldb</groupId>
          <artifactId>hsqldb</artifactId>
       </dependency>
-
-      <!-- dependencies for java 11 -->
+      
+    <!-- dependencies for java 11 -->
       <dependency>
          <groupId>javax.annotation</groupId>
          <artifactId>javax.annotation-api</artifactId>
