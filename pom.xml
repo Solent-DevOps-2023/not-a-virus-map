@@ -176,12 +176,26 @@
    </dependencies>
 
    <build>
-      <plugins>
-         <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-         </plugin>
-
+     <plugins>
+       <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <version>4.3</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>format</goal>
+                    </goals>
+                    <phase>process-sources</phase>
+                </execution>
+            </executions>
+            <configuration>
+                <header>src/license_templates/header.txt</header>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </configuration>
+        </plugin>
          <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven3-plugin</artifactId>
