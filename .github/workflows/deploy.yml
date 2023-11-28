@@ -1,0 +1,38 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - main  # Adjust this branch based on your Git workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04  # Use an Ubuntu runner for Linux-based VMs
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to Azure VM
+      run: |
+        # Add your deployment script here
+        # This script should copy your updated files to the Azure VM
+        # Example: Use SSH to copy files to the VM
+
+        AZURE_VM_IP = "20.117.224.131"  # Replace with the actual IP address or hostname of your Azure VM
+        AZURE_VM_USERNAME="azureuser"  # Replace with the actual username of your Azure VM
+        AZURE_VM_SSH_KEY="${{ secrets.AZURE_VM_SSH_KEY }}"  # Add this secret in your repository settings
+        GITHUB_REPO_PATH="$PWD"  # This is the current working directory of your GitHub Actions runner
+        GITHUB_BRANCH="main"  # Replace with the branch you want to deploy
+        DESTINATION_DIRECTORY="/home/azureuser/DevOps"   # Replace with the directory on your Azure VM where you want to deploy the files
+
+        # Clone or pull the latest changes from the GitHub repository
+        if [ -d "$GITHUB_REPO_PATH" ]; then
+            cd "$GITHUB_REPO_PATH"
+            git pull origin $GITHUB_BRANCH
+        else
+            git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
+        fi
+
+        # Copy the updated files to the Azure VM using SCP
+        scp -o StrictHostKeyChecking=no -i <(echo "$AZURE_VM_SSH_KEY") -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
