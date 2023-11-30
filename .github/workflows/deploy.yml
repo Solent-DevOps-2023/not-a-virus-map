@@ -35,4 +35,4 @@ jobs:
         fi
 
         # Copy the updated files to the Azure VM using SCP
-        scp -o StrictHostKeyChecking=no -i <(echo "$AZURE_VM_SSH_KEY") -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
+        scp -o StrictHostKeyChecking=no -i "$AZURE_VM_SSH_KEY" -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
