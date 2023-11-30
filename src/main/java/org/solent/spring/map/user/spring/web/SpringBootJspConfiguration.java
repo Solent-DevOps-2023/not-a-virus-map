@@ -11,15 +11,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.solent.spring.map.repository;
+package org.solent.spring.map.user.spring.web;
 
-import org.solent.spring.map.model.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.solent.spring.map.user.spring.service.ServiceConfiguration;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
-@Repository
-public interface UserRepository extends CrudRepository<User,Long>{
 
-    public Object findByUsername(String username);
+@Configuration
+@Import(ServiceConfiguration.class)
+@PropertySource("classpath:persistence-app.properties")
+public class SpringBootJspConfiguration {
+
 
 }
