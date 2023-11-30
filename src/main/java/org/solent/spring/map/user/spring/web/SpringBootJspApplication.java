@@ -17,8 +17,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(scanBasePackages = "org.solent.spring.map.user.spring.web")
+
 public class SpringBootJspApplication extends SpringBootServletInitializer {
 
     @Override

@@ -98,6 +98,7 @@ public class MVCController {
         model.addAttribute("selectedPage", "contact");
         return "contact";
     }
+    
 
 
     /*
