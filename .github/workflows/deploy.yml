@@ -20,12 +20,8 @@ jobs:
         GITHUB_REPO_PATH="$PWD"  # Current working directory of your GitHub Actions runner
         GITHUB_BRANCH="main"
         DESTINATION_DIRECTORY="/home/azureuser/DevOps"
-
-        ssh-keyscan -H $AZURE_VM_IP >> ~/.ssh/known_hosts
-
-        # Copy the SSH key from GitHub secrets to a file
-        echo "$AZURE_VM_SSH_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+  
+        chmod 600 "$AZURE_VM_SSH_KEY"
 
         # Clone or pull the latest changes from the GitHub repository
         if [ -d "$GITHUB_REPO_PATH" ]; then
@@ -36,6 +32,6 @@ jobs:
         fi
 
         # Copy the updated files to the Azure VM using SCP
-        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
+        scp -o StrictHostKeyChecking=no -i "$AZURE_VM_SSH_KEY" -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
       env: 
         AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
