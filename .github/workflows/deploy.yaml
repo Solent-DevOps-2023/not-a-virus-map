@@ -1,0 +1,53 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Create SSH directory if not exists
+      run: mkdir -p ~/.ssh
+
+    - name: Deploy to Azure VM
+      run: |
+
+        AZURE_VM_IP="20.117.224.131"
+        AZURE_VM_USERNAME="azureuser" 
+        GITHUB_REPO_PATH="$PWD"  # Current working directory of your GitHub Actions runner
+        GITHUB_BRANCH="main"
+        DESTINATION_DIRECTORY="/home/azureuser/DevOps"
+
+        ssh-keyscan -H $AZURE_VM_IP >> ~/.ssh/known_hosts
+
+        # Copy the SSH key from GitHub secrets to a file
+        echo "$AZURE_VM_SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+        # Clone or pull the latest changes from the GitHub repository
+        if [ -d "$GITHUB_REPO_PATH" ]; then
+            cd "$GITHUB_REPO_PATH"
+
+        # Alt code using git fetch
+        #     git fetch
+        #     git reset --hard origin/$GITHUB_BRANCH
+        # else
+        #     git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
+        # fi
+
+            git pull origin $GITHUB_BRANCH
+        else
+            git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
+        fi
+
+        # Copy the updated files to the Azure VM using SCP
+        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
+      env: 
+        AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
