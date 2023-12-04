@@ -19,8 +19,8 @@ jobs:
     - name: Deploy to Azure VM
       run: |
 
-        AZURE_VM_IP="20.117.224.131"
-        AZURE_VM_USERNAME="azureuser" 
+        AZURE_VM_IP=20.117.224.131
+        AZURE_VM_USERNAME=azureuser 
         GITHUB_REPO_PATH="$PWD"  # Current working directory of your GitHub Actions runner
         GITHUB_BRANCH="main"
         DESTINATION_DIRECTORY="/home/azureuser/DevOps"
