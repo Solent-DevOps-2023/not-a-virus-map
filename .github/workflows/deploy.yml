@@ -1,4 +1,4 @@
-name: Deploy to Azure VM
+name: Update Web App on Azure VM
 
 on:
   push:
@@ -13,25 +13,22 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Deploy to Azure VM
-      run: |
-        AZURE_VM_IP=20.117.224.131
-        AZURE_VM_USERNAME=azureuser
-        GITHUB_REPO_PATH="$PWD"  # Current working directory of your GitHub Actions runner
-        GITHUB_BRANCH="main"
-        DESTINATION_DIRECTORY="/home/azureuser/DevOps"
-  
-        chmod 600 "$AZURE_VM_SSH_KEY"
+    - name: SSH into Azure VM and Update Web App
+      uses: appleboy/ssh-action@master
+      with:
+        host: 20.117.224.131
+        username: "azureuser"
+        key: ${{ secrets.AZURE_VM_SSH_KEY }}
+        script: |
+          # Change to your web app directory
+          cd /home/azureuser/DevOps
 
-        # Clone or pull the latest changes from the GitHub repository
-        if [ -d "$GITHUB_REPO_PATH" ]; then
-            cd "$GITHUB_REPO_PATH"
-            git pull origin $GITHUB_BRANCH
-        else
-            git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
-        fi
+          # Pull the latest changes from GitHub
+          git pull origin main
 
-        # Copy the updated files to the Azure VM using SCP
-        scp -o StrictHostKeyChecking=no -i "$AZURE_VM_SSH_KEY" -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
-      env: 
-        AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
+          git clone https://github.com/jrykns-org/not-a-virus-map .
+
+
+          # Restart your application or perform any necessary steps
+          # Replace the following command with your actual command.
+          systemctl restart devops
