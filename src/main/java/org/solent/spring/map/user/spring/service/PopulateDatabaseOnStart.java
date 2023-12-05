@@ -22,6 +22,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.solent.spring.map.model.MapPoint;
+import org.solent.spring.map.repository.MapPointRepository;
 import org.solent.spring.map.user.dao.impl.UserRepository;
 import org.solent.spring.map.user.model.dto.User;
 import org.solent.spring.map.user.model.dto.UserRole;
@@ -42,9 +44,15 @@ public class PopulateDatabaseOnStart {
 
     private static final String DEFAULT_USER_PASSWORD = "user1234";
     private static final String DEFAULT_USER_USERNAME = "user1234";
+    
+    
+    
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private MapPointRepository mapPointRepository;
 
     @PostConstruct
     public void initDatabase() {
@@ -78,6 +86,19 @@ public class PopulateDatabaseOnStart {
         } else {
             LOG.info("defaultuser already exists. Not creating new :" + defaultUser);
         }
+        // Creating a MapPoint
+        MapPoint point1 = new MapPoint("Point 1", "Some point", "POI", 54, 17);
+        MapPoint point2 = new MapPoint("Point 2", "Some point", "Nature", 55, 17);
+        MapPoint point3 = new MapPoint("Point 3", "Some point", "Shop", 56, 17);
+        MapPoint point4 = new MapPoint("Point 4", "Some point", "POI", 57, 17);
+        MapPoint point5 = new MapPoint("Point 5", "Some point", "POI", 50.919047, -1.403267);
+
+        mapPointRepository.save(point1);
+        mapPointRepository.save(point2);
+        mapPointRepository.save(point3);
+        mapPointRepository.save(point4);
+        mapPointRepository.save(point5);
+        LOG.info("creating new map points:" + point1 + point2 + point3 + point4 + point5);
 
         LOG.debug("database initialised");
     }

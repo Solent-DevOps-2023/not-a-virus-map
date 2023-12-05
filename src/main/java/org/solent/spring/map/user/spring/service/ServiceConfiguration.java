@@ -24,6 +24,7 @@
 package org.solent.spring.map.user.spring.service;
 
 import org.solent.spring.map.user.dao.impl.PersistenceJPAConfig;
+import org.solent.spring.map.repository.MapRepositoryConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +35,8 @@ import org.springframework.context.annotation.Import;
  * @author cgallen
  */
 @Configuration
-
 @ComponentScan(basePackages = {"org.solent.spring.map.user.spring.service"})
-@Import({PersistenceJPAConfig.class})
+@Import({PersistenceJPAConfig.class, MapRepositoryConfig.class})
 public class ServiceConfiguration {
-
+   
 }

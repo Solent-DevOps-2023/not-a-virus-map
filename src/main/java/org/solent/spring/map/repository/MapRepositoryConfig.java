@@ -12,25 +12,16 @@
  * limitations under the License.
  */
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.solent.spring.map.user.dao.test;
+package org.solent.spring.map.repository;
 
-import org.solent.spring.map.user.dao.impl.PersistenceJPAConfig;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-
-/**
- *
- * @author cgallen
- */
 @Configuration
-@Import(PersistenceJPAConfig.class)
-@PropertySource("classpath:persistence-test.properties")
-public class DAOTestConfiguration {
+@EnableJpaRepositories(basePackages = "org.solent.spring.map.repository")
+public class MapRepositoryConfig {
     
 }
