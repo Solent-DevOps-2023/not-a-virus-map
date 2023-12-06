@@ -11,15 +11,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.solent.spring.map.repository;
 
-import org.solent.spring.map.model.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Repository
-public interface UserRepository extends CrudRepository<User,Long>{
-
-    public Object findByUsername(String username);
-
+@Configuration
+@EnableJpaRepositories(basePackages = "org.solent.spring.map.repository")
+public class MapRepositoryConfig {
+    
 }

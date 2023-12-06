@@ -11,20 +11,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.solent.spring.map.controller;
+package org.solent.spring.map.user.spring.web;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.solent.spring.map.user.spring.service.ServiceConfiguration;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
-/**
- * Created by pingwin on 27.10.16.
- */
-@Controller
-public class PageController {
 
-    @RequestMapping("/")
-    public String homePage(){
-        return "LeafletJsp";
-    }
+@Configuration
+@Import(ServiceConfiguration.class)
+@PropertySource("classpath:persistence-app.properties")
+public class SpringBootJspConfiguration {
+
 
 }
