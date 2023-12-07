@@ -18,6 +18,7 @@
     <script type='text/javascript' src='./js/leaflet-loader.js'></script>
     <script type='text/javascript' src='./js/leaflet-layerjson.min.js'></script>
     <!-- -->
+    <script type='text/javascript' src='./js/geolocation.js'></script>
 <jsp:include page="header.jsp" />
 <!-- Begin page content -->
 <main role="main" class="container">
@@ -39,6 +40,7 @@
 </main>
 <jsp:include page="footer.jsp" />
 <!-- Our JS map script importing-->
-<script type='text/javascript' src='./js/map/map.js'></script>
+<script type='text/javascript' src='./js/map/map_1.js'></script>
 <script type='text/javascript' src='./js/map/markers.js'></script>
+
 <!-- -->
