@@ -1,7 +1,6 @@
-<%-- Document : content Created on : Jan 4, 2020, 11:19:47 AM Author : cgallen
---%> <%@page contentType="text/html" pageEncoding="UTF-8"%> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <% // request set in
-controller //request.setAttribute("selectedPage", "home"); %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% request.setAttribute("selectedPage", "home"); %>
 <!-- Leaflet library import-->
 <link rel="stylesheet" type="text/css" href="./css/leaflet.css" />
 <link rel="stylesheet" type="text/css" href="./css/leaflet-loader.css" />
