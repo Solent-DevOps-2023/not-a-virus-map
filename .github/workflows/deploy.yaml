@@ -48,5 +48,14 @@ jobs:
   
           # Copy the updated files to the Azure VM using SCP
           scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
+
+          # Perform Docker build on the Azure VM
+          # docker build -t your_image_name .
+          # Optionally push the image to a registry if needed
+          # docker push your_image_name
+
+          # Start Docker containers as deamon on the Azure VM using Docker Compose
+          docker-compose up -d
+          
         env: 
           AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
