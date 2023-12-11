@@ -194,7 +194,7 @@
     </dependency>
 <!--     <dependency>
     <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
+    <artifactId>mysql-connector-java</artifactId> -->
     <!-- No version specified -->
      <!-- <version>8.0.33</version> Use the version that matches your MySQL server version
     </dependency> -->
