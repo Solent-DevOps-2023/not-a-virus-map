@@ -127,8 +127,7 @@
       <dependency>
 	<groupId>mysql</groupId>
 	<artifactId>mysql-connector-java</artifactId>
-	<!-- No version specified -->
-	<!-- 	<version>8.0.33</version> -->
+	<version>8.0.33</version>
 	<scope>runtime</scope>
       </dependency>
 
@@ -189,8 +188,7 @@
       <dependency>
         <groupId>org.mindrot</groupId>
         <artifactId>jbcrypt</artifactId>
-	<!-- No version specified -->
-	<!-- <version>0.4</version> Check for the latest version on Maven Central -->
+	<version>0.4</version>
     </dependency>
 <!--     <dependency>
     <groupId>mysql</groupId>
