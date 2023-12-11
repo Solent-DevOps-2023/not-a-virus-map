@@ -54,8 +54,8 @@ jobs:
           # Optionally push the image to a registry if needed
           # docker push your_image_name
 
-          # Start Docker containers as deamon on the Azure VM using Docker Compose
-          docker-compose up -d
+          # Fresh re-build web app
+          mvn clean install
           
         env: 
           AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
