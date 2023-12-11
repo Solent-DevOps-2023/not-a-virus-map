@@ -2,7 +2,7 @@ sudo systemctl stop devops
 
 git pull
 
-rm target/*
+rm -rf target/*
 
 mvn clean install
 
