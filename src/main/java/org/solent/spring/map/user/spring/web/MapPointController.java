@@ -38,7 +38,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 @RequestMapping("/")
 public class MapPointController {
 
@@ -54,25 +54,21 @@ public class MapPointController {
 
     // Add more methods for handling MapPoints functionality as needed
 
-    // Example:
-    /*
-    @RequestMapping(value = {"/add"}, method = RequestMethod.POST)
-    @Transactional
-    public String addMapPoint(@RequestParam(value = "name", required = true) String name,
-                              @RequestParam(value = "latitude", required = true) String latitude,
-                              @RequestParam(value = "longitude", required = true) String longitude,
-                              Model model, HttpSession session) {
+@RequestMapping(value = {"/add"}, method = RequestMethod.POST)
+@Transactional
+public String addMapPoint(@RequestParam(value = "name", required = true) String name,
+                                      @RequestParam(value = "description", required = false) String description,
+                                      @RequestParam(value = "category", required = false) String category,
+                                      @RequestParam(value = "lat", required = true) double lat,
+                                      @RequestParam(value = "lng", required = true) double lng) {
         // Your logic to add a new MapPoint to the repository
-        MapPoint newMapPoint = new MapPoint();
-        newMapPoint.setName(name);
-        newMapPoint.setLatitude(latitude);
-        newMapPoint.setLongitude(longitude);
-        mapPointsRepository.save(newMapPoint);
+        MapPoint newMapPoint = new MapPoint(name, description, category, lat, lng);
+        mapPointRepository.save(newMapPoint);
 
-        // Redirect to the list endpoint or show a success message
-        return "redirect:/mappoints/list";
-    }
-    */
+
+    // Redirect to the home page
+    return "redirect:/home";
+}
 
     // You can continue to add more methods for other MapPoints functionalities
 
