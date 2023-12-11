@@ -78,10 +78,13 @@
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <dependency>
+	   
+<!--    DUBLICATE ! ! ! 
+	<dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
+    </dependency> -->
+	   
     <dependency>
 	<groupId>io.micrometer</groupId>
 	<artifactId>micrometer-registry-prometheus</artifactId>
@@ -185,12 +188,14 @@
       <dependency>
         <groupId>org.mindrot</groupId>
         <artifactId>jbcrypt</artifactId>
-        <version>0.4</version> <!-- Check for the latest version on Maven Central -->
+	<!-- No version specified -->
+	<!-- <version>0.4</version> Check for the latest version on Maven Central -->
     </dependency>
     <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.23</version> <!-- Use the version that matches your MySQL server version -->
+    <!-- No version specified -->
+     <!-- <version>8.0.33</version> Use the version that matches your MySQL server version -->
     </dependency>
     <dependency>
     <groupId>org.hsqldb</groupId>
