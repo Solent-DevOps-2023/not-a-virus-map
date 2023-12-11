@@ -127,7 +127,8 @@
       <dependency>
 	<groupId>mysql</groupId>
 	<artifactId>mysql-connector-java</artifactId>
-	<version>8.0.33</version>
+	<!-- No version specified -->
+	<!-- 	<version>8.0.33</version> -->
 	<scope>runtime</scope>
       </dependency>
 
@@ -191,17 +192,17 @@
 	<!-- No version specified -->
 	<!-- <version>0.4</version> Check for the latest version on Maven Central -->
     </dependency>
-    <dependency>
+<!--     <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <!-- No version specified -->
-     <!-- <version>8.0.33</version> Use the version that matches your MySQL server version -->
-    </dependency>
-    <dependency>
+     <!-- <version>8.0.33</version> Use the version that matches your MySQL server version
+    </dependency> -->
+<!--     <dependency>
     <groupId>org.hsqldb</groupId>
     <artifactId>hsqldb</artifactId>
     <version>2.5.1</version>
-</dependency>
+</dependency> -->
 <!-- Jackson for JSON processing -->
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
