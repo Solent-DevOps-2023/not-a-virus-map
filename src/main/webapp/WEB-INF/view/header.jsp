@@ -6,6 +6,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script>
+    //Sets locales
+    function setLocaleCookie(locale) {
+        document.cookie = "userLocale=" + locale + "; path=/";
+        location.reload(); // Optional: Reload the page after setting the cookie
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -48,7 +55,16 @@
                         <ul class="nav navbar-nav">
                             <li <% if ("home".equals(request.getAttribute("selectedPage"))) {%> class="active"  <% } %> ><a href="./home">Home</a></li> 
                             <li <% if ("about".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% } %> ><a href="./about">About</a></li> 
-                            <li <% if ("contact".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="./contact">Contact</a></li>                          
+                            <li <% if ("contact".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="./contact">Contact</a></li>
+			    <li class="dropdown" >
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Set language <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				    <li><a href="#" onclick="setLocaleCookie('en')">English</a></li>
+				    <li><a href="#" onclick="setLocaleCookie('fr')">French</a></li>
+				    <li><a href="#" onclick="setLocaleCookie('de')">German</a></li>
+				</ul>
+			    </li>
+
                                 <c:if test="${sessionUser.userRole =='ADMINISTRATOR'}">
                                 <li class="dropdown" >
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Admin <span class="caret"></span></a>
