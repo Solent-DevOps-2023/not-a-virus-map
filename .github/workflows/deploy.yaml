@@ -58,7 +58,7 @@ jobs:
           git pull
           rm -rf target/*
           mvn clean install
-          sudo systemctl star devops
+          sudo systemctl start devops
 
           
           # Fresh re-build web app
