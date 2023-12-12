@@ -54,11 +54,10 @@ jobs:
           # Optionally push the image to a registry if needed
           # docker push your_image_name
 
-          sudo systemctl stop devops
           git pull
           rm -rf target/*
           mvn clean install
-          sudo systemctl start devops
+          sudo systemctl restart devops
 
           
           # Fresh re-build web app
