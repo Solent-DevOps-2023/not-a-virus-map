@@ -1,9 +1,3 @@
-<%-- 
-    Document   : content
-    Created on : Jan 4, 2020, 11:19:47 AM
-    Author     : cgallen
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 // request set in controller
@@ -23,7 +17,7 @@
         <p><button type="submit" >Log In</button></p>
     </form> 
     
-    <a href="./register">Create a new account</a>
+    <a href="./register"><fmt:message key="label.login.create" /></a>
 </main>
 
 

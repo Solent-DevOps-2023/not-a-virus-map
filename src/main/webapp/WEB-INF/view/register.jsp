@@ -23,7 +23,7 @@
         <p>Username <input type="text" name="username" ></input></p><BR>
         <p>Password <input type="password" name="password" ></input></p>
         <p>Re Enter Password <input type="password" name="password2" ></input></p>
-        <p><button type="submit" >Create New Account</button></p>
+        <p><button type="submit" ><fmt:message key="label.login.create" /></button></p>
     </form> 
 
 </main>

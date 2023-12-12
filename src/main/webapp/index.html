@@ -5,6 +5,15 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+  <script>
+    //Set local to english initially
+    function setInitialLocaleCookie() {
+        document.cookie = "userLocale=en; path=/";
+    }
+
+    //Set local on load
+    window.onload = setInitialLocaleCookie;
+    </script>
     <head>
         <title>Index Page to access App</title>
         <meta charset="UTF-8">

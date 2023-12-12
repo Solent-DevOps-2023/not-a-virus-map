@@ -12,7 +12,7 @@
 <jsp:include page="header.jsp" />
 <!-- Begin page content -->
 <main role="main" class="container">
-    <H1>Contact</H1>
+    <H1><fmt:message key="label.navbar.contact" /></H1>
 </main>
 
 

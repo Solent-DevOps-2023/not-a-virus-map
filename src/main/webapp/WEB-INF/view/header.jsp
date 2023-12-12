@@ -1,11 +1,18 @@
-<%-- 
-    Document   : header
-    Created on : Jan 4, 2020, 11:19:01 AM
-    Author     : cgallen
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
+<fmt:setLocale value="${cookie['userLocale'].value}" />
+<fmt:setBundle basename="messages" />
+<script>
+    //Sets locales
+    function setLocaleCookie(locale) {
+        document.cookie = "userLocale=" + locale + "; path=/";
+        location.reload(); //Reload the page after setting the cookie
+    }
+    console.log(${param.userLocale})
+</script>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -46,10 +53,18 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li <% if ("home".equals(request.getAttribute("selectedPage"))) {%> class="active"  <% } %> ><a href="./home">Home</a></li> 
-                            <li <% if ("about".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% } %> ><a href="./about">About</a></li> 
-                            <li <% if ("contact".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="./contact">Contact</a></li>
-			    <li <% if ("wiki".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="https://com619-devops.uksouth.cloudapp.azure.com/wiki/">Wiki</a></li>                          
+                            <li <% if ("home".equals(request.getAttribute("selectedPage"))) {%> class="active"  <% } %> ><a href="./home"><fmt:message key="label.navbar.home" /></a></li> 
+                            <li <% if ("about".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% } %> ><a href="./about"><fmt:message key="label.navbar.about" /></a></li> 
+                            <li <% if ("contact".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="./contact"><fmt:message key="label.navbar.contact" /></a></li>
+			                      <li <% if ("wiki".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="https://com619-devops.uksouth.cloudapp.azure.com/wiki/">Wiki</a></li> 
+                      <li class="dropdown" >
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <fmt:message key="label.navbar.setlang" /> <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				    <li><a href="#" onclick="setLocaleCookie('en')"><fmt:message key="label.lang.en" /></a></li>
+				    <li><a href="#" onclick="setLocaleCookie('fr')"><fmt:message key="label.lang.fr" /></a></li>
+				    <li><a href="#" onclick="setLocaleCookie('de')"><fmt:message key="label.lang.de" /></a></li>
+				</ul>
+			    </li>
 
                                 <c:if test="${sessionUser.userRole =='ADMINISTRATOR'}">
                                 <li class="dropdown" >
@@ -64,7 +79,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <!-- user role:  ${sessionUser.userRole}-->
                             <c:if test="${sessionUser.userRole =='ANONYMOUS'}">
-                                <li><a href="./login">Login or create a new Account</a></li>
+                                <li><a href="./login"><fmt:message key="label.navbar.login" /></a></li>
                                 </c:if>
                                 <c:if test="${sessionUser.userRole !='ANONYMOUS'}">
                                 <form id="logoutForm" method="POST" action="./logout">
