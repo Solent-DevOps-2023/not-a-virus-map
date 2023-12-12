@@ -16,12 +16,13 @@ package org.solent.spring.map.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class MapPoint {
-    @Id
-    @GeneratedValue
+   
     private Long id;
     private String name;
     private String description;
@@ -42,6 +43,8 @@ public class MapPoint {
         this.lat = lat;
         this.lng = lng;
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     public Long getId() {
         return id;

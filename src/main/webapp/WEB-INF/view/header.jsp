@@ -56,7 +56,8 @@
                             <li <% if ("home".equals(request.getAttribute("selectedPage"))) {%> class="active"  <% } %> ><a href="./home"><fmt:message key="label.navbar.home" /></a></li> 
                             <li <% if ("about".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% } %> ><a href="./about"><fmt:message key="label.navbar.about" /></a></li> 
                             <li <% if ("contact".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="./contact"><fmt:message key="label.navbar.contact" /></a></li>
-			    <li class="dropdown" >
+			                      <li <% if ("wiki".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="https://com619-devops.uksouth.cloudapp.azure.com/wiki/">Wiki</a></li> 
+                      <li class="dropdown" >
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <fmt:message key="label.navbar.setlang" /> <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 				    <li><a href="#" onclick="setLocaleCookie('en')"><fmt:message key="label.lang.en" /></a></li>
@@ -70,7 +71,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Admin <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="./users">Manage Users</a></li>
-                                        <li><a href="./catalog">Manage Catalogue</a></li>
+                                        <li><a href="./poiList">Manage Map Points</a></li>
                                     </ul>
                                 </li>
                             </c:if>

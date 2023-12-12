@@ -40,12 +40,7 @@
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-data-jpa</artifactId>
-         <exclusions>
-            <exclusion>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-logging</artifactId>
-            </exclusion>
-         </exclusions>
+         
       </dependency>
       <!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> </dependency> -->
 
@@ -66,19 +61,9 @@
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-web</artifactId>
-         <exclusions>
-            <exclusion>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-logging</artifactId>
-            </exclusion>
-         </exclusions>
+         
       </dependency>
 
-    <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-	   
 <!--    DUBLICATE ! ! ! 
 	<dependency>
 	<groupId>org.springframework.boot</groupId>
@@ -117,6 +102,8 @@
          <artifactId>springdoc-openapi-ui</artifactId>
          <version>${springdoc.version}</version>
       </dependency>
+      
+      
 
       <dependency>
          <groupId>javax.servlet</groupId>
@@ -162,6 +149,9 @@
          <groupId>org.glassfish.jaxb</groupId>
          <artifactId>jaxb-runtime</artifactId>
       </dependency>
+      
+      
+      
       <!-- needed by Hibernate for java 11 -->
       <dependency>
          <groupId>org.javassist</groupId>
@@ -205,7 +195,17 @@
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>2.12.5</version> <!-- Use the latest version available -->
+        <version>2.16.0-rc1</version> <!-- Use the latest version available -->
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.22.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.22.0</version>
     </dependency>
     <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -284,5 +284,11 @@
 
    </build>
 
+<repositories>
+    <repository>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+</repositories>
 
 </project>

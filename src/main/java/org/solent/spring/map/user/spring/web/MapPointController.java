@@ -34,6 +34,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.transaction.Transactional;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import org.solent.spring.map.user.dao.impl.UserRepository;
+import org.solent.spring.map.user.model.dto.User;
+import org.solent.spring.map.user.model.dto.UserRole;
+import static org.solent.spring.map.user.spring.web.MVCController.LOG;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,7 +55,22 @@ public class MapPointController {
     public List<MapPoint> listMapPoints(Model model, HttpSession session) {
         return mapPointRepository.findAll();
     }
+    
+    @Autowired
+    UserRepository userRepository;
 
+    private User getSessionUser(HttpSession session) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            sessionUser = new User();
+            sessionUser.setUsername("anonymous");
+            sessionUser.setUserRole(UserRole.ANONYMOUS);
+            session.setAttribute("sessionUser", sessionUser);
+        }
+        return sessionUser;
+    }
+
+    
     // Add more methods for handling MapPoints functionality as needed
 
 @RequestMapping(value = {"/add"}, method = RequestMethod.POST)
@@ -70,8 +89,35 @@ public String addMapPoint(@RequestParam(value = "name", required = true) String 
     return "redirect:/home";
 }
 
+@RequestMapping(value = {"/poiList"}, method = RequestMethod.GET)
+@Transactional
+public String poiList(Model model,
+            HttpSession session) {
+        String message = "";
+        String errorMessage = "";
+
+        User sessionUser = getSessionUser(session);
+        model.addAttribute("sessionUser", sessionUser);
+
+        if (!UserRole.ADMINISTRATOR.equals(sessionUser.getUserRole())) {
+            errorMessage = "you must be an administrator to access users information";
+            return "home";
+        }
+        
+        LOG.debug("/pointList called");
+
+        List<MapPoint> mapPoints = mapPointRepository.findAll();
+
+        model.addAttribute("mapPoints", mapPoints);
+
+        return "poiList";
+}
+
     // You can continue to add more methods for other MapPoints functionalities
 
     // ...
 
+
 }
+
+  
