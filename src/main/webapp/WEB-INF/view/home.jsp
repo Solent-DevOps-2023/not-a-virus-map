@@ -34,10 +34,10 @@
             <div id="loader"></div>
             <p><a href="./swagger-ui/index.html" target="_blank">Swagger (OpenAPI) UI</a></p>
             <p><a href="./api-docs" target="_blank">Swagger (OpenAPI) Json Definition</a></p>
-
+            <p><a href="./policy" target="_blank">GDPR policy</a></p>
+            <p><a href="./policy#cookiesAnchor1" target="_blank">Cookie policy</a></p>
         </section>
     
-
 </main>
 <jsp:include page="footer.jsp" />
 <!-- Our JS map script importing-->
