@@ -26,13 +26,14 @@ import org.solent.spring.map.user.model.dto.Address;
 import org.solent.spring.map.user.model.dto.User;
 import org.solent.spring.map.user.model.dto.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/")
@@ -54,6 +55,13 @@ public class UserAndLoginController {
         return sessionUser;
     }
 
+    
+    @GetMapping("/users/get")
+    @Transactional
+    public ResponseEntity<List<User>> getUsers(HttpSession session) {
+        List<User> userList = userRepository.findAll();
+        return ResponseEntity.ok(userList);
+    }
     @RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
     public String logout(Model model,
             HttpSession session) {
