@@ -184,6 +184,51 @@ public String poiList(Model model,
                     }		
                 return "poiList";
 	}
+        
+        
+    @RequestMapping(value = {"/viewModifyPoi"}, method = RequestMethod.GET)
+public String modifypoi(
+    @RequestParam(value = "pointId", required = true) Long id,
+    Model model,
+    HttpSession session) {
+
+    String errorMessage = "";
+
+    model.addAttribute("selectedPage", "home");
+
+    // Check secure access to modifyPoi profile
+    User sessionUser = getSessionUser(session);
+    model.addAttribute("sessionUser", sessionUser);
+
+    if (UserRole.ANONYMOUS.equals(sessionUser.getUserRole())) {
+        errorMessage = "You must be logged in to access poi information.";
+        model.addAttribute("errorMessage", errorMessage);
+        return "home";
+    }
+
+    if (!UserRole.ADMINISTRATOR.equals(sessionUser.getUserRole())) {
+        // If not an administrator, you can only access your own account info
+        errorMessage = "Security: Non-admin viewModifyPoi called for user "
+                + sessionUser.getUsername() + " which is not the logged-in user.";
+        LOG.warn(errorMessage);
+        model.addAttribute("errorMessage", errorMessage);
+        return "home";
+    }
+
+    // Correct repository method for finding a MapPoint by ID
+    Optional<MapPoint> optionalMapPoint = mapPointRepository.findById(id);
+
+    if (optionalMapPoint.isEmpty()) {
+        errorMessage = "MapPoint with ID " + id + " not found.";
+        model.addAttribute("errorMessage", errorMessage);
+        return "errorPage"; // Return an appropriate error page or redirect
+    }
+
+    MapPoint mapPoint = optionalMapPoint.get();
+    model.addAttribute("mapPoint", mapPoint);
+
+    return "viewModifyPoi";
+}
 }
 
 

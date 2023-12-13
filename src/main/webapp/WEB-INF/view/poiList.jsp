@@ -73,11 +73,11 @@
                                                         
                                                         </td>
 							<td>
-								<form action="" method="POST">
-									<input type="hidden" name="pointId" value="${mapPoint.id}">
-									<input type="hidden" name="action" value="modifyPoint">
-									<button class="btn" type="submit">Modify Point</button>
+								<form action="./viewModifyPoi" method="GET">
+                                                                    <input type="hidden" name="pointId" value="${mapPoint.id}">
+                                                                    <button class="btn" type="submit" >Modify Point</button>
 								</form>
+                                                                        
 								<form action="" method="POST">
 									<input type="hidden" name="pointId" value="${mapPoint.id}">
 									<input type="hidden" name="action" value="deletePoint">
