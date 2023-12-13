@@ -1,9 +1,3 @@
-<%-- 
-    Document   : content
-    Created on : Jan 4, 2020, 11:19:47 AM
-    Author     : cgallen
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 // request set in controller
@@ -15,14 +9,14 @@
     <H1><fmt:message key="label.navbar.about" /></H1>
 </main>
 <head>
-    <title>GDPR Policy for [Your Web Application Name]</title>
+    <title>GDPR Policy for Not a virus map</title>
     <!-- Include any necessary CSS or other metadata -->
 </head>
     <body>
-        <h1>GDPR Policy for [Your Web Application Name]</h1>
+        <h1>GDPR Policy for Not a virus map</h1>
         
         <h2>Introduction</h2>
-        <p>[Your Web Application Name] is dedicated to safeguarding user data, ensuring compliance with the General Data Protection Regulation (GDPR). This policy outlines our approach to collecting, processing, storing, and managing data in line with GDPR guidelines.</p>
+        <p>Not a virus map is dedicated to safeguarding user data, ensuring compliance with the General Data Protection Regulation (GDPR). This policy outlines our approach to collecting, processing, storing, and managing data in line with GDPR guidelines.</p>
         
         <h2>Data Collection and Processing</h2>
         <h3>Types of Data Collected:</h3>
@@ -48,7 +42,7 @@
 
         <h2>User Rights</h2>
         <h3>Right to Access:</h3>
-        <p>Request access to your personal and geolocation data stored on our servers by contacting [contact email/phone].</p>
+        <p>Request access to your personal and geolocation data stored on our servers by contacting 4maynh59@solent.ac.uk</p>
         
         <h3>Right to Rectification:</h3>
         <p>Update or correct your personal information and geolocation data through account settings.</p>
@@ -79,20 +73,19 @@
         <p>By using our web application, you consent to our use of cookies.</p>
 
         <h2>Contact Information</h2>
-        <p><strong>Data Protection Officer (if applicable):</strong> [Name, Email, Phone]</p>
-        <p><strong>Contact for Data Requests:</strong> For queries or requests concerning your data, contact [Email/Phone].</p>
+        <p><strong>Contact for Data Requests:</strong> For queries or requests concerning your data, contact 4maynh59@solent.ac.uk</p>
 
         <h2>Updates to the Policy</h2>
         <p><strong>Policy Changes:</strong> This policy may undergo updates periodically. We will notify users of significant changes via email or through our website.</p>
 
         <h2>Compliance Statement</h2>
-        <p>[Your Web Application Name] adheres strictly to GDPR compliance standards, ensuring the protection and lawful processing of user data.</p>
+        <p>Not a virus map adheres strictly to GDPR compliance standards, ensuring the protection and lawful processing of user data.</p>
         
         <h2>Updates to the Policy</h2>
         <p><strong>Policy Changes:</strong> This policy may undergo updates periodically. We will notify users of significant changes via email or through our website.</p>
 
         <h2>Compliance Statement</h2>
-        <p>[Your Web Application Name] adheres strictly to GDPR compliance standards, ensuring the protection and lawful processing of user data.</p>
+        <p>Not a virus map adheres strictly to GDPR compliance standards, ensuring the protection and lawful processing of user data.</p>
 
     </body>
 </html>
