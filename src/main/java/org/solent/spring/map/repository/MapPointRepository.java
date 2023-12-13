@@ -13,9 +13,9 @@
  */
 package org.solent.spring.map.repository;
 
+import java.util.List;
 import org.solent.spring.map.model.MapPoint;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,4 +24,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MapPointRepository extends JpaRepository<MapPoint,Long>{
 
+    @Query("select m from MapPoint m where m.name = :name")
+    public List<MapPoint> findByName(@Param("name")String name);
 }

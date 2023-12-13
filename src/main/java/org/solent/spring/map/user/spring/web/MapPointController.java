@@ -22,6 +22,7 @@ package org.solent.spring.map.user.spring.web;
  * @author Dário
  */
 
+import io.swagger.v3.oas.annotations.Operation;
 import java.io.IOException;
 import org.solent.spring.map.repository.MapPointRepository;
 import org.solent.spring.map.model.MapPoint;
@@ -36,6 +37,7 @@ import javax.transaction.Transactional;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 import org.solent.spring.map.user.dao.impl.UserRepository;
 import org.solent.spring.map.user.model.dto.User;
 import org.solent.spring.map.user.model.dto.UserRole;
@@ -49,6 +51,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -57,13 +60,8 @@ public class MapPointController {
 
     @Autowired
     MapPointRepository mapPointRepository;
+ 
 
-    @RequestMapping(value = {"/mappoints/get"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Transactional
-    @ResponseBody
-    public List<MapPoint> listMapPoints(Model model, HttpSession session) {
-        return mapPointRepository.findAll();
-    }
     
     @Autowired
     UserRepository userRepository;
@@ -93,21 +91,28 @@ public String addMapPoint(@RequestParam(value = "name", required = true) String 
                           RedirectAttributes redirectAttributes) {
     try {
         // Validate and process the image file
-        if (image.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Please select a file to upload.");
-            return "redirect:/home";
-        }
+        
 
+        
+        
+        // Create a new MapPoint entity
+        MapPoint newMapPoint = new MapPoint(name, description, category, lat, lng);
+  
+        
+        if (!image.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Please select a file to upload.");
+            
+                  
         if (!image.getContentType().startsWith("image/")) {
             redirectAttributes.addFlashAttribute("error", "Please upload a valid image file.");
             return "redirect:/home";
         }
-
-        // Create a new MapPoint entity
-        MapPoint newMapPoint = new MapPoint(name, description, category, lat, lng);
-
         // Set the image data to the entity
-        newMapPoint.setImage(image.getBytes());
+            newMapPoint.setImage(image.getBytes());
+        }
+        
+
+        
 
         // Save the new MapPoint to the repository
         mapPointRepository.save(newMapPoint);
@@ -153,7 +158,7 @@ public String poiList(Model model,
         if (mapPointOptional.isPresent()) {
             MapPoint mapPoint = mapPointOptional.get();
             HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.IMAGE_JPEG); // Change this based on your image format
+            headers.setContentType(MediaType.IMAGE_PNG); // Change this based on your image format
 
             // Return the image data with the correct headers
             return new ResponseEntity<>(mapPoint.getImage(), headers, HttpStatus.OK);
@@ -164,9 +169,23 @@ public String poiList(Model model,
     // You can continue to add more methods for other MapPoints functionalities
 
     // ...
-
-
+    
+    @Operation(summary = "Get particular map point details")
+	@RequestMapping("/findMapPoint")
+    
+	public String findMapPoint(@RequestParam String name, Model model) {
+		
+	
+		List<MapPoint> mapPoints = mapPointRepository.findByName(name);
+                if (mapPoints.isEmpty()) {
+                        model.addAttribute("errorMessage", "No map points found with the name: " + name);
+                    } else {
+                        model.addAttribute("mapPoints", mapPoints);
+                    }		
+                return "poiList";
+	}
 }
+
 
 /*
 @RequestMapping(value = "/login/android", method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -250,3 +269,4 @@ public String login(@RequestParam(value = "action", required = false) String act
 	}
 }
 */
+
