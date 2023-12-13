@@ -54,9 +54,8 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li <% if ("home".equals(request.getAttribute("selectedPage"))) {%> class="active"  <% } %> ><a href="./home"><fmt:message key="label.navbar.home" /></a></li> 
-                            <li <% if ("about".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% } %> ><a href="./cookie-GDPR"><fmt:message key="label.navbar.cookie-GDPR" /></a></li> 
                             <li <% if ("contact".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="./contact"><fmt:message key="label.navbar.contact" /></a></li>
-			                      <li <% if ("wiki".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="https://com619-devops.uksouth.cloudapp.azure.com/wiki/">Wiki</a></li> 
+			    <li <% if ("wiki".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% }%> ><a href="https://com619-devops.uksouth.cloudapp.azure.com/wiki/">Wiki</a></li> 
                             <li <% if ("about".equals(request.getAttribute("selectedPage"))) {%>  class="active"  <% } %> ><a href="./cookie-GDPR"><fmt:message key="label.navbar.cookie-GDPR" /></a></li> 
                       <li class="dropdown" >
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <fmt:message key="label.navbar.setlang" /> <span class="caret"></span></a>
