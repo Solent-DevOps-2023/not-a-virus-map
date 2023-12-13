@@ -3,6 +3,10 @@
 // request set in controller
 //    request.setAttribute("selectedPage","contact");
 %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${cookie['userLocale'].value}" />
+<fmt:setBundle basename="messages" />
 <jsp:include page="header.jsp" />
 <!-- Begin page content -->
 <main role="main" class="container">

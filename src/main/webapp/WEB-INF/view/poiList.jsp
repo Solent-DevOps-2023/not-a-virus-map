@@ -40,6 +40,7 @@
 						<th scope="col">category</th>
 						<th scope="col">Latitude</th>
 						<th scope="col">Longitude</th>
+                                                <th scope="col">Image</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -52,6 +53,10 @@
 							<td>${mapPoint.category}</td>
 							<td>${mapPoint.lat}</td>
 							<td>${mapPoint.lng}</td>
+                                                        <td>
+                                                        <img th:if="${mapPoint.image}" th:src="@{'/image/' + ${mapPoint.id}}" alt="Map Point Image" style="max-width: 100px; max-height: 100px;"/>
+                                                        
+                                                        </td>
 							<td>
 								<form action="" method="POST">
 									<input type="hidden" name="pointId" value="${mapPoint.id}">
