@@ -4,6 +4,12 @@
 //    request.setAttribute("selectedPage","cookie-GDPR");
 %>
 <jsp:include page="header.jsp" />
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
+<fmt:setLocale value="${cookie['userLocale'].value}" />
+<fmt:setBundle basename="messages" />
+
 <!-- Begin page content -->
 <main role="main" class="container">
     <H1><fmt:message key="label.navbar.about" /></H1>
@@ -13,84 +19,70 @@
     <!-- Include any necessary CSS or other metadata -->
 </head>
     <body>
-        <h1>GDPR Policy for Not a virus map</h1>
+        <h1><fmt:message key="label.policy.header" /></h1>
         
-        <h2>Introduction</h2>
-        <p>Not a virus map is dedicated to safeguarding user data, ensuring compliance with the General Data Protection Regulation (GDPR). This policy outlines our approach to collecting, processing, storing, and managing data in line with GDPR guidelines.</p>
+        <h2><fmt:message key="label.policy.intro" /></h2>
+        <p><fmt:message key="label.policy.intro.text" /></p>
         
-        <h2>Data Collection and Processing</h2>
-        <h3>Types of Data Collected:</h3>
+        <h2><fmt:message key="label.policy.data-collection" /></h2>
+        <h3><fmt:message key="label.policy.data-types" /></h3>
         <ul>
-            <li>Personal data: Name, email address, contact information.</li>
-            <li>Geolocation data: Usage of location services for mapping features.</li>
-            <li>Uploaded metadata: Information added to the map by users.</li>
+            <li><fmt:message key="label.policy.data-types.personal" /></li>
+            <li><fmt:message key="label.policy.data-types.geo" /></li>
+            <li><fmt:message key="label.policy.data-types.meta" /></li>
         </ul>
         
-        <h3>Purpose of Data Collection:</h3>
+        <h3><fmt:message key="label.policy.why" /></h3>
         <ul>
-            <li>Personal data: To facilitate login features, communicate updates, and provide personalized services.</li>
-            <li>Geolocation data: To enhance user experience with map features and services dependent on location.</li>
-            <li>Uploaded metadata: To pin user-provided information to specific locations on the map.</li>
+            <li><fmt:message key="label.policy.why.personal" /></li>
+            <li><fmt:message key="label.policy.why.geo" /></li>
+            <li><fmt:message key="label.policy.why.meta" /></li>
         </ul>
-        
-        <h3>Lawful Basis for Processing:</h3>
-        <ul>
-            <li>Personal data: Consent provided during account creation or as necessary for the performance of our services.</li>
-            <li>Geolocation data: Consent granted for using location services.</li>
-            <li>Uploaded metadata: Consent for storing and displaying user-provided data on the map.</li>
-        </ul>
+	<h3><fmt:message key="label.policy.lawful-basis" /></h3>
+	<ul>
+	    <li><fmt:message key="label.policy.lawful-basis.personal" /></li>
+	    <li><fmt:message key="label.policy.lawful-basis.geo" /></li>
+	    <li><fmt:message key="label.policy.lawful-basis.meta" /></li>
+	</ul>
 
-        <h2>User Rights</h2>
-        <h3>Right to Access:</h3>
-        <p>Request access to your personal and geolocation data stored on our servers by contacting 4maynh59@solent.ac.uk</p>
-        
-        <h3>Right to Rectification:</h3>
-        <p>Update or correct your personal information and geolocation data through account settings.</p>
-        
-        <h3>Right to Erasure:</h3>
-        <p>Request deletion of your personal, geolocation data, or uploaded metadata. Contact us to initiate the erasure process.</p>
-        
-        <h3>Right to Object:</h3>
-        <p>Object to specific processing activities related to your data by contacting us.</p>
+	<h2><fmt:message key="label.user-rights" /></h2>
+	<h3><fmt:message key="label.right-to-access" /></h3>
+	<p><fmt:message key="label.right-to-access.text" /></p>
 
-        <h2>Data Security Measures</h2>
-        <h3>Data Security Practices:</h3>
-        <p>We implement robust security measures to protect all user data, including personal information, geolocation data, and uploaded metadata.</p>
-        <p>Access to data is restricted to authorized personnel only.</p>
-        
-        <h3>Encryption and Storage:</h3>
-        <p>Your data, including geolocation information and uploaded metadata, is encrypted and securely stored on external databases.</p>
+	<h3><fmt:message key="label.right-to-rectification" /></h3>
+	<p><fmt:message key="label.right-to-rectification.text" /></p>
 
-        <h2>Third-Party Data Sharing</h2>
-        <h3>Third-Party Services:</h3>
-        <p>We use external databases and services to store and manage user data. These providers comply with GDPR regulations.</p>
-        <p>Data may be transferred internationally to these external databases for storage and processing.</p>
+	<h3><fmt:message key="label.right-to-erasure" /></h3>
+	<p><fmt:message key="label.right-to-erasure.text" /></p>
 
-        <h2>Cookie Policy and Consent</h2>
-        
-        <h3>Cookie Usage:</h3>
-        <p>We use cookies for improved website functionality and user experience. Refer to our Cookie Policy for details.</p>
-        <p>By using our web application, you consent to our use of cookies.</p>
+	<h3><fmt:message key="label.right-to-object" /></h3>
+	<p><fmt:message key="label.right-to-object.text" /></p>
 
-        <h2>Contact Information</h2>
-        <p><strong>Contact for Data Requests:</strong> For queries or requests concerning your data, contact 4maynh59@solent.ac.uk</p>
+	<h2><fmt:message key="label.data-security" /></h2>
+	<h3><fmt:message key="label.security-practices" /></h3>
+	<p><fmt:message key="label.security-practices.text" /></p>
+	<p><fmt:message key="label.encryption-storage" /></p>
+	<p><fmt:message key="label.encryption-storage.text" /></p>
 
-        <h2>Updates to the Policy</h2>
-        <p><strong>Policy Changes:</strong> This policy may undergo updates periodically. We will notify users of significant changes via email or through our website.</p>
+	<h2><fmt:message key="label.third-party-sharing" /></h2>
+	<h3><fmt:message key="label.third-party-services" /></h3>
+	<p><fmt:message key="label.third-party-services.text" /></p>
+	<p><fmt:message key="label.data-transfer" /></p>
 
-        <h2>Compliance Statement</h2>
-        <p>Not a virus map adheres strictly to GDPR compliance standards, ensuring the protection and lawful processing of user data.</p>
-        
-        <h2>Updates to the Policy</h2>
-        <p><strong>Policy Changes:</strong> This policy may undergo updates periodically. We will notify users of significant changes via email or through our website.</p>
+	<h2><fmt:message key="label.cookie-policy" /></h2>
+	<h3><fmt:message key="label.cookie-usage" /></h3>
+	<p><fmt:message key="label.cookie-usage.text" /></p>
+	<p><fmt:message key="label.cookie-consent" /></p>
 
-        <h2>Compliance Statement</h2>
-        <p>Not a virus map adheres strictly to GDPR compliance standards, ensuring the protection and lawful processing of user data.</p>
+	<h2><fmt:message key="label.contact-information" /></h2>
+	<p><strong><fmt:message key="label.contact-data-requests" />:</strong> <fmt:message key="label.contact-data-requests.text" /></p>
 
+	<h2><fmt:message key="label.policy-updates" /></h2>
+	<p><strong><fmt:message key="label.policy-changes" />:</strong> <fmt:message key="label.policy-changes.text" /></p>
+
+	<h2><fmt:message key="label.compliance-statement" /></h2>
+	<p><fmt:message key="label.compliance-statement.text" /></p>
+
+	<jsp:include page="footer.jsp" />
     </body>
 </html>
-
-
-
-
-<jsp:include page="footer.jsp" />
