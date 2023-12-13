@@ -31,6 +31,13 @@
 			<div style="color: red;">${errorMessage}</div>
 			<div style="color: green;">${message}</div>
 
+                        <form action="/findMapPoint" method="GET" class="form-inline">
+                            <div class="form-group">
+                                <label for="searchName">Search by Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
 			<table class="table">
 				<thead>
 					<tr>
@@ -54,7 +61,15 @@
 							<td>${mapPoint.lat}</td>
 							<td>${mapPoint.lng}</td>
                                                         <td>
-                                                        <img th:if="${mapPoint.image}" th:src="@{'/image/' + ${mapPoint.id}}" alt="Map Point Image" style="max-width: 100px; max-height: 100px;"/>
+                                                           <c:choose>
+                <c:when test="${not empty mapPoint.image}">
+                    <img src="<%= request.getContextPath() %>/image/${mapPoint.id}" alt="Map Point Image" style="max-width: 100px; max-height: 100px;"/>
+                </c:when>
+                <c:otherwise>
+                    <!-- Display an alternative content or placeholder image when mapPoint.image is null -->
+                    <span>No Image Uploaded</span>
+                </c:otherwise>
+            </c:choose>
                                                         
                                                         </td>
 							<td>
@@ -82,7 +97,6 @@
 
 
 			<section>
-				<p>random text.</p>
 			</section>
 			<footer> </footer>
 			<hr />
