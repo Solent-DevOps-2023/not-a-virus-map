@@ -100,6 +100,18 @@ public class MVCController {
     }
     
 
+    @RequestMapping(value = "/cookie-GDPR", method = {RequestMethod.GET, RequestMethod.POST})
+    public String cookieCart(Model model, HttpSession session) {
+
+        // get sessionUser from session
+        User sessionUser = getSessionUser(session);
+        model.addAttribute("sessionUser", sessionUser);
+        
+        // used to set tab selected
+        model.addAttribute("selectedPage", "contact");
+        return "cookie-GDPR";
+    }
+ 
 
     /*
      * Default exception handler, catches all exceptions, redirects to friendly

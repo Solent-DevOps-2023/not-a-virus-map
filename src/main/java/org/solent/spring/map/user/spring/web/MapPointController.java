@@ -168,7 +168,7 @@ public String poiList(Model model,
 
 }
 
-  
+/*
 @RequestMapping(value = "/login/android", method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
 @Transactional
 public String login(@RequestParam(value = "action", required = false) String action,
@@ -199,7 +199,6 @@ public String login(@RequestParam(value = "action", required = false) String act
 		model.addAttribute("errorMessage", errorMessage);
 		return "login";
 	}
-	*/
 
 	List<User> userList = userRepository.findByUsername(username);
 
@@ -219,7 +218,6 @@ public String login(@RequestParam(value = "action", required = false) String act
 			model.addAttribute("errorMessage", errorMessage);
 			return "login";
 		}
-		*/
 		User loginUser = userList.get(0);
 		if (!loginUser.isValidPassword(password)) {
 			model.addAttribute("errorMessage", "invalid username or password");
@@ -251,3 +249,4 @@ public String login(@RequestParam(value = "action", required = false) String act
 		return "error";
 	}
 }
+*/
