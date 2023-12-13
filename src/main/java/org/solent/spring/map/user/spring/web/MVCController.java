@@ -75,17 +75,18 @@ public class MVCController {
         return "home";
     }
 
-    @RequestMapping(value = "/about", method = {RequestMethod.GET, RequestMethod.POST})
-    public String aboutCart(Model model, HttpSession session) {
+    // not used page
+    // @RequestMapping(value = "/about", method = {RequestMethod.GET, RequestMethod.POST})
+    // public String aboutCart(Model model, HttpSession session) {
 
-        // get sessionUser from session
-        User sessionUser = getSessionUser(session);
-        model.addAttribute("sessionUser", sessionUser);
+    //     // get sessionUser from session
+    //     User sessionUser = getSessionUser(session);
+    //     model.addAttribute("sessionUser", sessionUser);
         
-        // used to set tab selected
-        model.addAttribute("selectedPage", "about");
-        return "about";
-    }
+    //     // used to set tab selected
+    //     model.addAttribute("selectedPage", "about");
+    //     return "about";
+    // }
 
     @RequestMapping(value = "/contact", method = {RequestMethod.GET, RequestMethod.POST})
     public String contactCart(Model model, HttpSession session) {
@@ -99,17 +100,16 @@ public class MVCController {
         return "contact";
     }
     
-
-    @RequestMapping(value = "/cookie-GDPR", method = {RequestMethod.GET, RequestMethod.POST})
-    public String cookieCart(Model model, HttpSession session) {
+    @RequestMapping(value = "/policy", method = {RequestMethod.GET, RequestMethod.POST})
+    public String policyCart(Model model, HttpSession session) {
 
         // get sessionUser from session
         User sessionUser = getSessionUser(session);
         model.addAttribute("sessionUser", sessionUser);
         
         // used to set tab selected
-        model.addAttribute("selectedPage", "contact");
-        return "cookie-GDPR";
+        model.addAttribute("selectedPage", "policy");
+        return "policy";
     }
  
 

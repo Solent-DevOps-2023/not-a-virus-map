@@ -1,13 +1,13 @@
 <%-- 
     Document   : content
-    Created on : Jan 4, 2020, 11:19:47 AM
-    Author     : cgallen
+    Created on : Dec 13, 2023
+    Author     : IgorGrey
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 // request set in controller
-//    request.setAttribute("selectedPage","cookie-GDPR");
+//    request.setAttribute("selectedPage","policy");
 %>
 <jsp:include page="header.jsp" />
 <!-- Begin page content -->
@@ -15,7 +15,7 @@
     <H1><fmt:message key="label.navbar.policy" /></H1>
 </main>
 <head>
-    <title>GDPR Policy for [Your Web Application Name]</title>
+    <title>GDPR Policy for Not a Virus Map</title>
     <!-- Include any necessary CSS or other metadata -->
 </head>
     <body>
