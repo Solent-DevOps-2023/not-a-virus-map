@@ -18,11 +18,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Transient;
 
 @Entity
 public class MapPoint {
    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
@@ -30,6 +33,8 @@ public class MapPoint {
     private double lat;
     private double lng;
 
+    @Lob
+    private byte[] image;
 
     @SuppressWarnings("unused")
     public MapPoint()
@@ -43,9 +48,6 @@ public class MapPoint {
         this.lat = lat;
         this.lng = lng;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     public Long getId() {
         return id;
     }
@@ -92,7 +94,15 @@ public class MapPoint {
     public void setLng(double lng) {
         this.lng = lng;
     }
+    
+     public byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    
 
     @Override
     public String toString() {

@@ -21,8 +21,16 @@ L.layerJSON({
         });
     },
     buildPopup: function(data, marker) {
-        return '<h4>'+ data.name +'</h4><br/>Category:<b>'+ data.category +'</b><hr>Description:<br/>'+ data.description +''|| null;
+        var popupContent = '<h4>' + data.name + '</h4><br/>Category:<b>' + data.category + '</b><hr>Description:<br/>' + data.description;
+
+    // Check if the image data exists
+    if (data.image) {
+        // Add an image tag with the dynamically generated URL
+        popupContent += '<br/><img src="/image/' + data.id + '" alt="Map Point Image" style="max-width: 100px; max-height: 100px;"/>';
     }
+
+    return popupContent;
+}
 })
     .on('dataloading',function(e) {
         loader.style.display = 'block';
