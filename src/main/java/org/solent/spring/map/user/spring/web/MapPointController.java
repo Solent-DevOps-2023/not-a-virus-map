@@ -187,4 +187,86 @@ public String poiList(Model model,
 }
 
 
-  
+/*
+@RequestMapping(value = "/login/android", method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+@Transactional
+public String login(@RequestParam(value = "action", required = false) String action,
+		@RequestParam(value = "username", required = false) String username,
+		@RequestParam(value = "password", required = false) String password,
+		@RequestParam(value = "password2", required = false) String password2,
+		Model model,
+		HttpSession session) {
+	String message = "";
+	String errorMessage = "";
+
+	//LOG.debug("login for username=" + username);
+
+	// get current session modifyUser 
+	//User sessionUser = getSessionUser(session);
+	//model.addAttribute("sessionUser", sessionUser);
+
+	/*
+	if (!UserRole.ANONYMOUS.equals(sessionUser.getUserRole())) {
+		errorMessage = "user " + sessionUser.getUsername() + " already logged in";
+		LOG.warn(errorMessage);
+		model.addAttribute("errorMessage", errorMessage);
+		return "home";
+	};
+
+	if (username == null || username.trim().isEmpty()) {
+		errorMessage = "you must enter a username";
+		model.addAttribute("errorMessage", errorMessage);
+		return "login";
+	}
+
+	List<User> userList = userRepository.findByUsername(username);
+
+	if ("login".equals(action)) {
+		//todo find and add modifyUser and test password
+		LOG.debug("logging in user username=" + username);
+		if (userList.isEmpty()) {
+			errorMessage = "cannot find user for username :" + username;
+			LOG.warn(errorMessage);
+			model.addAttribute("errorMessage", errorMessage);
+			return "Unknown username";
+		}
+		/*
+		if (password == null) {
+			errorMessage = "you must enter a password";
+			LOG.warn(errorMessage);
+			model.addAttribute("errorMessage", errorMessage);
+			return "login";
+		}
+		User loginUser = userList.get(0);
+		if (!loginUser.isValidPassword(password)) {
+			model.addAttribute("errorMessage", "invalid username or password");
+			return "Invalid username or password";
+		}
+
+		if (!loginUser.getEnabled()) {
+			model.addAttribute("errorMessage", "user account "+username
+					+ " is disabled in this system");
+			return "User account is disabled";
+		}
+
+		message = "successfully logged in user:" + username;
+		session.setAttribute("sessionUser", loginUser);
+
+		model.addAttribute("sessionUser", loginUser);
+
+		model.addAttribute("message", message);
+		model.addAttribute("errorMessage", errorMessage);
+		// used to set tab selected
+		model.addAttribute("selectedPage", "home");
+		return "successful";
+	} else {
+		model.addAttribute("errorMessage", "unknown action requested:" + action);
+		LOG.error("login page unknown action requested:" + action);
+		model.addAttribute("errorMessage", errorMessage);
+		// used to set tab selected
+		model.addAttribute("selectedPage", "home");
+		return "error";
+	}
+}
+*/
+
