@@ -1,3 +1,28 @@
+Skip to content
+jrykns-org
+/
+not-a-virus-map
+
+Type / to search
+
+Code
+Issues
+37
+Pull requests
+1
+Discussions
+Actions
+Projects
+2
+Wiki
+Security
+Insights
+Deploy to Azure VM
+Merge pull request #121 from jrykns-org/IgorGrey-testing-deployment #16
+Jobs
+Run details
+Workflow file for this run
+.github/workflows/deploy.yaml at bddd0fa
 name: Deploy to Azure VM
 
 on:
@@ -31,37 +56,33 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
   
           # Clone or pull the latest changes from the GitHub repository
-          # if [ -d "$GITHUB_REPO_PATH" ]; then
-          #     cd "$GITHUB_REPO_PATH"
+          if [ -d "$GITHUB_REPO_PATH" ]; then
+              cd "$GITHUB_REPO_PATH"
   
-          # # Alt code using git fetch
-          # #     git fetch
-          # #     git reset --hard origin/$GITHUB_BRANCH
-          # # else
-          # #     git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
-          # # fi
-  
-          #     git pull origin $GITHUB_BRANCH
+          # Alt code using git fetch
+          #     git fetch
+          #     git reset --hard origin/$GITHUB_BRANCH
           # else
           #     git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
           # fi
   
+              git pull origin $GITHUB_BRANCH
+          else
+              git clone -b $GITHUB_BRANCH --single-branch https://github.com/jrykns-org/not-a-virus-map.git $GITHUB_REPO_PATH
+          fi
+  
           # Copy the updated files to the Azure VM using SCP
-          # scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
+          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_REPO_PATH/* $AZURE_VM_USERNAME@$AZURE_VM_IP:$DESTINATION_DIRECTORY
 
           # Perform Docker build on the Azure VM
           # docker build -t your_image_name .
           # Optionally push the image to a registry if needed
           # docker push your_image_name
 
-          git pull
+          # Fresh re-build web app
           rm -rf target/*
           mvn clean install
           sudo systemctl restart devops
-
-          
-          # Fresh re-build web app
-          # mvn clean install
           
         env: 
           AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
