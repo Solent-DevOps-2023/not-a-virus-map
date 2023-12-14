@@ -45,6 +45,12 @@
                                 <input type="hidden" name="username" value="${user.username}">
                                 <button class="btn" type="submit" >Modify User</button>
                             </form> 
+                            <form action="./deleteUser" method="POST">
+                                <input type="hidden" name="username" value="${user.username}" />
+                                <button class="btn" type="submit">Delete User</button>
+                            </form>
+                                    
+                                    
                         </td>
                     </tr>
                 </c:forEach>
