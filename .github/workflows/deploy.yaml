@@ -57,7 +57,7 @@ jobs:
           # Fresh re-build web app
           rm -rf target/*
           mvn clean install
-          sudo docker-compose restart
+          sudo systemctl restart docker
 
         env: 
           AZURE_VM_SSH_KEY: ${{ secrets.AZURE_VM_SSH_KEY }}
