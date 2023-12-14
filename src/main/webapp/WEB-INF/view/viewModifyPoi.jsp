@@ -14,7 +14,7 @@
 <main role="main" class="container">
 
     <div>
-        <h1>Poi Details ${modifyPoi.id}</h1>
+        <h1>Poi Details ${mapPoint.id}</h1>
         <!-- print error message if there is one -->
         <div style="color:red;">${errorMessage}</div>
         <div style="color:green;">${message}</div>
@@ -26,7 +26,7 @@
                 <tbody>
                     <tr>
                         <td>Poi ID</td>
-                        <td>${modifyPoi.id}</td>
+                        <td>${mapPoint.id}</td>
                     </tr>
                     <tr>
                         <td>Name</td>

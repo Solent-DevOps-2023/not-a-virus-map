@@ -89,12 +89,6 @@
 				</tbody>
 			</table>
 
-
-
-
-
-
-
 			<section>
 			</section>
 			<footer> </footer>

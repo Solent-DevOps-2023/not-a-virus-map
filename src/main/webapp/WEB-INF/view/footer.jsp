@@ -10,7 +10,7 @@
 
         <footer class="footer">
             <div class="container">
-                <p class="text-muted">Place sticky footer content here.</p>
+                <p class="text-muted">© 2023 Not a Virus Map | 123 Main Street, Cityville, Country | Email: info@example.com | Phone: +1 (555) 123-4567</p>
             </div>
         </footer>
 
