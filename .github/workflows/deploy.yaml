@@ -1,28 +1,3 @@
-Skip to content
-jrykns-org
-/
-not-a-virus-map
-
-Type / to search
-
-Code
-Issues
-37
-Pull requests
-1
-Discussions
-Actions
-Projects
-2
-Wiki
-Security
-Insights
-Deploy to Azure VM
-Merge pull request #121 from jrykns-org/IgorGrey-testing-deployment #16
-Jobs
-Run details
-Workflow file for this run
-.github/workflows/deploy.yaml at bddd0fa
 name: Deploy to Azure VM
 
 on:
