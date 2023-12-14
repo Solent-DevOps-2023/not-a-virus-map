@@ -464,6 +464,56 @@ public class UserAndLoginController {
 
         return "viewModifyUser";
     }
+@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+public String deleteUser(@RequestParam(value = "username", required = true) String username,
+                         Model model,
+                         HttpSession session) {
+
+    String message = "";
+    String errorMessage = "";
+
+    LOG.debug("post deleteUser called for username=" + username);
+
+    // Security check if the user is allowed to delete this user
+    User sessionUser = getSessionUser(session);
+    model.addAttribute("sessionUser", sessionUser);
+
+    if (UserRole.ANONYMOUS.equals(sessionUser.getUserRole())) {
+        errorMessage = "You must be logged in to delete a user.";
+        model.addAttribute("errorMessage", errorMessage);
+        return "home";
+    }
+
+    // Retrieve the User to be deleted
+    List<User> userList = userRepository.findByUsername(username);
+
+    if (userList.isEmpty()) {
+        errorMessage = "User with username " + username + " not found.";
+        model.addAttribute("errorMessage", errorMessage);
+        return "errorPage"; // Return an appropriate error page or redirect
+    }
+
+    User userToDelete = userList.get(0);
+
+    // Additional security check (if needed), e.g., only administrators can delete
+    if (!UserRole.ADMINISTRATOR.equals(sessionUser.getUserRole())) {
+        // Add your specific security checks here
+        errorMessage = "You do not have permission to delete a user.";
+        model.addAttribute("errorMessage", errorMessage);
+        return "home";
+    }
+
+    // Delete the User
+    userRepository.delete(userToDelete);
+
+    // Add success message
+    message = "User with username " + username + " has been deleted.";
+    model.addAttribute("message", message);
+
+    // Redirect to the users list or another appropriate page
+    return "redirect:/users";
+}
+
 
     /*
      * Default exception handler, catches all exceptions, redirects to friendly

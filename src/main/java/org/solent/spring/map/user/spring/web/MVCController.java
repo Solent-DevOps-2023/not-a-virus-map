@@ -46,10 +46,10 @@ public class MVCController {
         return sessionUser;
     }
 
-    // this redirects calls to the root of our application to index.html
+    // this redirects calls to the root of our application to home
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) {
-        return "redirect:index.html";
+        return "redirect:home";
     }
 
     @RequestMapping(value = "/home", method = {RequestMethod.GET, RequestMethod.POST})
