@@ -255,6 +255,17 @@ public String updatePoi(
         model.addAttribute("errorMessage", errorMessage);
         return "home";
     }
+    
+    if (!UserRole.ADMINISTRATOR.equals(sessionUser.getUserRole())) {
+        // If not an administrator, you can only access your own account info
+        errorMessage = "Security: Non-admin viewModifyPoi called for user "
+                + sessionUser.getUsername() + " which is not the logged-in user.";
+        LOG.warn(errorMessage);
+        model.addAttribute("errorMessage", errorMessage);
+        return "home";
+    }
+    
+    
 
     Optional<MapPoint> optionalMapPoint = mapPointRepository.findById(poiId);
 
@@ -298,7 +309,7 @@ public String updatePoi(
 
     modifyMapPoint = mapPointRepository.save(modifyMapPoint);
 
-    model.addAttribute("modifyMapPoint", modifyMapPoint);
+    model.addAttribute("mapPoint", modifyMapPoint);
     model.addAttribute("errorMessage", errorMessage);
     model.addAttribute("message", "Map Point " + modifyMapPoint.getName() + " updated successfully");
     model.addAttribute("selectedPage", "home");
