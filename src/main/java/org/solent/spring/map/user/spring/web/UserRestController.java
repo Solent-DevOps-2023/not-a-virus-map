@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -124,7 +125,7 @@ public List<User> listUsers(Model model, HttpSession session) {
 	return userRepository.findAll();
 }
 
-@RequestMapping(value = "/login/android", method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/login/android", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 @Transactional
 public String login(@RequestParam(value = "action", required = false) String action,
 		@RequestParam(value = "username", required = false) String username,
