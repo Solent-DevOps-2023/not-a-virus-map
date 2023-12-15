@@ -20,10 +20,7 @@ package org.solent.spring.map.password;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author gallenc
- */
+
 public class PasswordUtils {
     
     public static String hashPassword(String password){
