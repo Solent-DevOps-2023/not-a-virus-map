@@ -34,6 +34,9 @@
 
       <!-- cargo -->
       <cargo.plugin.version>1.10.9</cargo.plugin.version>
+      
+      <selenium-java-version>4.1.4</selenium-java-version>
+      <webdrivermanager-version>4.2.2</webdrivermanager-version>
    </properties>
 
    <dependencies>
@@ -95,6 +98,10 @@
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-logging</artifactId>
             </exclusion>
+            <exclusion>
+               <groupId>org.seleniumhq.selenium</groupId>
+               <artifactId>selenium-java</artifactId>
+            </exclusion>
          </exclusions>
       </dependency>
 
@@ -134,6 +141,92 @@
             </exclusion>
          </exclusions>
       </dependency>
+      
+      
+      <!-- selenium driver dependencies -->
+      <!-- NOTE these exclude or override selenium 4.x versions which are pulled in by spring-boot pom -->
+      <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-java</artifactId>
+         <version>${selenium-java-version}</version>
+         <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.seleniumhq.selenium</groupId>
+               <artifactId>selenium-edge-driver</artifactId>
+            </exclusion>
+            <exclusion>
+               <groupId>org.seleniumhq.selenium</groupId>
+               <artifactId>selenium-ie-driver</artifactId>
+            </exclusion>
+            <exclusion>
+               <groupId>org.seleniumhq.selenium</groupId>
+               <artifactId>selenium-opera-driver</artifactId>
+            </exclusion>
+            <exclusion>
+               <groupId>org.seleniumhq.selenium</groupId>
+               <artifactId>selenium-safari-driver</artifactId>
+            </exclusion>
+            
+         </exclusions>
+
+      </dependency>
+      
+      
+      
+      <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-chrome-driver</artifactId>
+    <version>${selenium-java-version}</version>
+    <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-chromium-driver</artifactId>
+    <version>${selenium-java-version}</version>
+    <scope>test</scope>
+        </dependency>
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-devtools-v120</artifactId>
+         <version>4.16.0</version>
+
+</dependency>
+
+      <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-api</artifactId>
+         <version>${selenium-java-version}</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-remote-driver</artifactId>
+         <version>${selenium-java-version}</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-support</artifactId>
+         <version>${selenium-java-version}</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-firefox-driver</artifactId>
+         <version>${selenium-java-version}</version>
+         <scope>test</scope>
+      </dependency>
+      
+          <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-http-jdk-client</artifactId>
+    <version>4.5.0</version>
+</dependency>
 
       <!-- IN MEMORY Database and JDBC Driver -->
       <dependency>
@@ -173,6 +266,7 @@
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
+          <version>${junit.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -185,6 +279,13 @@
         <artifactId>jbcrypt</artifactId>
 	<version>0.4</version>
     </dependency>
+        <!-- This is necessary if you're using JUnit 4 with the latest Spring Boot version -->
+      <dependency>
+         <groupId>org.junit.vintage</groupId>
+         <artifactId>junit-vintage-engine</artifactId>
+         <scope>test</scope>
+      </dependency>
+    
 <!--     <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId> -->
@@ -236,6 +337,18 @@
                 </includes>
             </configuration>
         </plugin>
+        
+        <!-- surefire plugin runs junit tests during test phase but excludes integration tests -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <excludes>
+                  <exclude>**/*IT.java</exclude>
+               </excludes>
+            </configuration>
+         </plugin>
+        
          <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven3-plugin</artifactId>
@@ -273,6 +386,33 @@
                </deployables>
             </configuration>
          </plugin>
+         
+         
+          <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-failsafe-plugin</artifactId>
+                  <version>3.2.2</version>
+                  <configuration>
+                     <systemProperties>
+                        <property>
+                           <name>selenium.chrome.headless</name>
+                           <value>true</value>
+                        </property>
+                     </systemProperties>
+                  </configuration>
+                  
+                  
+
+                  <!-- works with *IT.java -->
+                  <executions>
+                     <execution>
+                        <goals>
+                           <goal>integration-test</goal>
+                           <goal>verify</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
 
 
       </plugins>
