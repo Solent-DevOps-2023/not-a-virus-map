@@ -116,7 +116,14 @@ public class UserRestController {
             return modifyUser;
     }
 
-	/*
+// Senju's API-methods
+@RequestMapping(value = "/getUserList/android", method = RequestMethod.GET)
+@Transactional
+@ResponseBody
+public List<User> listUsers(Model model, HttpSession session) {
+	return userRepository.findAll();
+}
+
 @RequestMapping(value = "/login/android", method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
 @Transactional
 public String login(@RequestParam(value = "action", required = false) String action,
@@ -128,44 +135,9 @@ public String login(@RequestParam(value = "action", required = false) String act
 	String message = "";
 	String errorMessage = "";
 
-	//LOG.debug("login for username=" + username);
-
-	// get current session modifyUser 
-	//User sessionUser = getSessionUser(session);
-	//model.addAttribute("sessionUser", sessionUser);
-
-	/*
-	if (!UserRole.ANONYMOUS.equals(sessionUser.getUserRole())) {
-		errorMessage = "user " + sessionUser.getUsername() + " already logged in";
-		LOG.warn(errorMessage);
-		model.addAttribute("errorMessage", errorMessage);
-		return "home";
-	};
-
-	if (username == null || username.trim().isEmpty()) {
-		errorMessage = "you must enter a username";
-		model.addAttribute("errorMessage", errorMessage);
-		return "login";
-	}
-
 	List<User> userList = userRepository.findByUsername(username);
 
 	if ("login".equals(action)) {
-		//todo find and add modifyUser and test password
-		LOG.debug("logging in user username=" + username);
-		if (userList.isEmpty()) {
-			errorMessage = "cannot find user for username :" + username;
-			LOG.warn(errorMessage);
-			model.addAttribute("errorMessage", errorMessage);
-			return "Unknown username";
-		}
-		/*
-		if (password == null) {
-			errorMessage = "you must enter a password";
-			LOG.warn(errorMessage);
-			model.addAttribute("errorMessage", errorMessage);
-			return "login";
-		}
 		User loginUser = userList.get(0);
 		if (!loginUser.isValidPassword(password)) {
 			model.addAttribute("errorMessage", "invalid username or password");
@@ -197,7 +169,6 @@ public String login(@RequestParam(value = "action", required = false) String act
 		return "error";
 	}
 }
-*/
 
 
 }
