@@ -132,40 +132,20 @@ public String login(@RequestParam(value = "action", required = false) String act
 		@RequestParam(value = "password2", required = false) String password2,
 		Model model,
 		HttpSession session) {
-	String message = "";
-	String errorMessage = "";
 
 	List<User> userList = userRepository.findByUsername(username);
 
 	if ("login".equals(action)) {
 		User loginUser = userList.get(0);
 		if (!loginUser.isValidPassword(password)) {
-			model.addAttribute("errorMessage", "invalid username or password");
 			return "Invalid username or password";
 		}
 
 		if (!loginUser.getEnabled()) {
-			model.addAttribute("errorMessage", "user account "+username
-					+ " is disabled in this system");
 			return "User account is disabled";
 		}
-
-		message = "successfully logged in user:" + username;
-		session.setAttribute("sessionUser", loginUser);
-
-		model.addAttribute("sessionUser", loginUser);
-
-		model.addAttribute("message", message);
-		model.addAttribute("errorMessage", errorMessage);
-		// used to set tab selected
-		model.addAttribute("selectedPage", "home");
 		return "successful";
 	} else {
-		model.addAttribute("errorMessage", "unknown action requested:" + action);
-		LOG.error("login page unknown action requested:" + action);
-		model.addAttribute("errorMessage", errorMessage);
-		// used to set tab selected
-		model.addAttribute("selectedPage", "home");
 		return "error";
 	}
 }
