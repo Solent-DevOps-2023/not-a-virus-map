@@ -20,4 +20,6 @@ GitHub repository: https://github.com/jrykns-org/not-a-virus-map
 
 Server (demo) URL: https://com619-devops.uksouth.cloudapp.azure.com/home
 
+Wiki page: https://hamzamohibe.github.io/
+
 Presentation video: https://youtu.be/B0-xTQh1CPI
