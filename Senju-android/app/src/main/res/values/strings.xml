@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="button_text">Place marker</string>
+    <string name="button_description">Place marker</string>
+    <string name="map">Map</string>
+    <string name="selectmap">selectmap</string>
+    <string name="options">Preferences</string>
+    <string name="preferences">preferences</string>
+</resources>
