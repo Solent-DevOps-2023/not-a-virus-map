@@ -93,4 +93,22 @@ public MapPoint addMapPoint(@RequestParam(value = "name", required = true) Strin
                 
                 return mapPoints;
 	}
+
+// Senju's API-methods
+@RequestMapping(value = "/deletePoint/android", method = RequestMethod.POST)
+public String deletePoint(@RequestParam(value = "pointId", required = true) Long pointId,
+		  Model model,
+		  HttpSession session) {
+
+// Retrieve the MapPoint to be deleted
+Optional<MapPoint> optionalMapPoint = mapPointRepository.findById(pointId);
+
+MapPoint mapPointToDelete = optionalMapPoint.get();
+
+// Delete the MapPoint
+mapPointRepository.delete(mapPointToDelete);
+
+// Redirect to the map points list or another appropriate page
+return "redirect:/poiList";
+}
 }
